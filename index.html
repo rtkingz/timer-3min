@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>Timer 3 Minutos</title>
+<style>
+  body { background:#fff; font-family:Arial, sans-serif; text-align:center; padding-top:50px; }
+  .timer {
+    font-size: 3em; font-weight: bold; padding: 20px; background:#222; color:#fff; display:inline-block; border-radius:8px;
+  }
+</style>
+</head>
+<body>
+<div class="timer" id="countdown">03:00</div>
+<script>
+  let totalSeconds = 3 * 60; // 3 minutos
+  const countdownEl = document.getElementById('countdown');
+
+  function update() {
+    const min = String(Math.floor(totalSeconds/60)).padStart(2,'0');
+    const sec = String(totalSeconds%60).padStart(2,'0');
+    countdownEl.textContent = `${min}:${sec}`;
+    if (totalSeconds > 0) {
+      totalSeconds--;
+    } else {
+      clearInterval(timerInterval);
+      countdownEl.textContent = "Acabou!";
+    }
+  }
+  const timerInterval = setInterval(update, 1000);
+  update();
+</script>
+</body>
+</html>
